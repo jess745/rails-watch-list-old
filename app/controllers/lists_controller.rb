@@ -1,5 +1,5 @@
 class ListsController < ApplicationController
-  before_action find_list, only: %i[show destroy update]
+  before_action :find_list, only: %i[show destroy update]
   def index
     @lists = List.all
   end
@@ -23,8 +23,8 @@ class ListsController < ApplicationController
   end
 
   def create
-    @list = List.new(movie_params)
-    @list.save
+    @list = List.new(list_params)
+    @list.save!
     redirect_to list_path(@list)
   end
 
